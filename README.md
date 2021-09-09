@@ -1,27 +1,52 @@
-# Contact
+#Git repository in the app
+connect the git with my app. uploading each change with the commit to the git.com.
+there have 3 version: the first one is the init version which means have not been coded yet. 
+the second version upload the login page and third change upload the chat and server. 
+all the sub branch was merged into main branch in the end.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+#data stuctures
+there have two main pages in the app, which are login page and chat page.
+the login page the users can put their account and password in the client side and it will sent to the local storage pace.
+in the chat page, the client side will show different caht group to selet. when users select one of group in client side, the data will send to the server side(socket.js)to record the login. finally, in client side, user can see which group they are login. 
 
-## Development server
+#Angular architecture
+##components:
+there are five main components, including chat, login, account, app-routing, and Appcomponent.
+##services:
+in this app, we use the socket service to connet the server.
+##models:
+using the ngModels, HttpClientModule, FormsModle, and BrowserModel.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#Node server architecture:
+server.js the main server to call socket.js and listen.js
 
-## Code scaffolding
+#REST API
+##socket.services
+in the client side, we create the services to connect with the server side. 
+in this app, there use the io to connect with the server url.using the emit to deliver the data and using the on to recevie the data. 
+##socket.js
+in the server, there have three variables which are rooms, socketRoom, and socketRoomnum.
+rooms is to show how many room we have in the array.
+socketRoom is to show which room is currently using in client side.
+socketRoomnums is to show how many people are living in the same group. 
+on the other hand, there have the mesaage parameter to get and sent the message.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##example
+there is the example how server and client update the data
+###message in server
+socket.on('message',(message)=>{
+                for(i=0; i<socketRoom.length;i++){
+                    if (socketRoom[i][0]== socket.id){
+                        chat.to(socketRoom[i][1]).emit('message',message);
+                    }
+                }
+            });
+            
+###message in client service
+ getMessage(next:any){
+    this.socket.on('message',(message:any)=>next(message));
+  }
+###message in client
+his.socketservice.getMessage((m:any)=>{this.messages.push(m)})
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+this is the example how receive the data in this app. the message will show in the html with {{message}}. 
