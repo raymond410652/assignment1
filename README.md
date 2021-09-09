@@ -46,7 +46,9 @@ on the other hand, there have the mesaage parameter to get and sent the message.
 ## example
 
 there is the example how server and client update the data
-###message in server
+
+### message in server
+
 socket.on('message',(message)=>{
                 for(i=0; i<socketRoom.length;i++){
                     if (socketRoom[i][0]== socket.id){
