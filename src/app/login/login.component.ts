@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { BookService } from '../services/book.service';
+import {HttpHeaders, HttpParams} from "@angular/common/http";
 
+  let key = 'Item 1';
+  localStorage.setItem(key, 'Value');
+  let myItem = localStorage.getItem(key);
+  localStorage.setItem(key, 'New Value');
+  localStorage.removeItem(key);
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,4 +28,5 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }
