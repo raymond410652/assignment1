@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { UserModel } from '../userModel';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-account',
@@ -8,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-
-  constructor() { }
+  users : UserModel []=[]
+  constructor(private userService: BookService, private router: Router) { }
 
   ngOnInit(): void {
+  
   }
+
 
 }

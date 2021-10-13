@@ -1,33 +1,45 @@
 import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
 import { Observable} from 'rxjs';
+import { UserModel } from '../userModel';
 
 
-let key = 'Item 1';
-localStorage.setItem(key, 'Value');
-let myItem = localStorage.getItem(key);
-localStorage.setItem(key, 'New Value');
-localStorage.removeItem(key);
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class BookService {
-  url = "";
-  jsonItems:any = {};
   
+  jsonItems:any = {};
+  url = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
 
   
   
-  setItem(key:any,item:any){
-    this.jsonItems[key] = item;
-  }
 
-  getItem(key:any){
-    return this.jsonItems[key];
+  add(user:UserModel){
+    return this.http.post<any>('http://localhost:3000/api/add', user);
   }
-  
+  getlist(){
+    return this.http.get<any>('http://localhost:3000/api/getlist');
+  }
+  getitem(userID:any){
+    return this.http.post<any>('http://localhost:3000/api/getitem',{'userid':userID})
+  }
+  updateitem(user:UserModel){
+    return this.http.post<any>('http://localhost:3000/api/update', user)
+
+  }
+  deleteitem(userID:any){
+    return this.http.post<any>('http://localhost:3000/api/deleteitem',{'userid':userID})
+  }
+  checkvalidid(userID:any){
+    return this.http.post<any>('http://localhost:3000/api/checkvalidid',{'userid':userID})
+  }
+  getproductcount(){
+    return this.http.get<any>('http://localhost:3000/api/prodcount');
+  }
   
 
 

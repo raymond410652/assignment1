@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container">
+    <form (submit)="addnewUser($event)">
+        <div class = "form-group">
+            <label for ="productid">User ID</label>
+            <input type="number" class="form-control" id = "userid" [(ngModel)] = "userid" (ngModelChange) = "checkvalidid($event)"  name = "userid" placeholder ="ID">
+            <div [@iderrorState]="stateName" class="alert alert-warning" id="iderrormsg" role="alert">{{iderrormsg}} {{iderrormsg2}}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="productid">User Name</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+        </div>
+
+        <div class="form-group">
+            <label for="productid">password</label>
+            <input class="form-control" id="userpwd" [(ngModel)]="userpwd" name="userpwd">
+
+        </div>
+        <div class="form-group">
+            <label for="productid">email</label>
+            <input  class="form-control" id="useremail" [(ngModel)]="useremail" name="useremail" placeholder ="useremail">
+
+        </div>
+       
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square"></i>Add New</button>
+            &nbsp; <button routerLink = "/list">Back</button>
+        </div>
+        <div [@noticeState]="noticeName" class="alert alert-warning" role="alert">{{newProductMessage}}</div>
+    </form>
+</div>
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{SocketService} from '../services/socket.service';
 
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "http://localhost:3000/api/chat";
 
 @Component({
   selector: 'app-chat',
@@ -9,10 +9,10 @@ const SERVER_URL = "http://localhost:3000";
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  private socket:any;
+  
   messagecontent:string ="";
   messages:string[]=[];
-  rooms =[];
+  rooms = [];
   roomslist:string="";
   roomnotice:string="";
   currentroom:string="";
@@ -23,7 +23,10 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(){
     this.socketservice.initSocket();
-    this.socketservice.getMessage((m:any)=>{this.messages.push(m)});
+    this.socketservice.getMessage().subscribe((message:any) => {
+      console.log(message)
+      this.messages.push(message);});
+    
     this.socketservice.reqroomList();
     this.socketservice.getroomList((msg:any)=>{this.rooms = JSON.parse(msg)});
     this.socketservice.notice((msg:any)=>{this.roomnotice = msg});
@@ -42,7 +45,7 @@ export class ChatComponent implements OnInit {
   joinroom(){
     this.socketservice.joinroom(this.roomslist);
     this.socketservice.reqnumusers(this.roomslist);
-    this.socketservice.getnumusers((res:number)=>(this.numusers=res));
+    this.socketservice.getnumusers((res:any)=>(this.numusers=res));
   }
   clearnotice(){
     this.roomnotice ="";
@@ -51,7 +54,7 @@ export class ChatComponent implements OnInit {
     this.socketservice.leaveroom(this.currentroom)
     this.socketservice.reqnumusers(this.currentroom);
     this.socketservice.getnumusers((res:any)=>(this.numusers = res));
-    this.roomslist == null;
+    this.roomslist = "";
     this.currentroom = "";
     this.isinRoom = false;
     this.numusers = 0;
@@ -65,14 +68,15 @@ export class ChatComponent implements OnInit {
     this.socketservice.reqroomList();
     this.newroom = "";
   }
-  chat(messagecontent:string=""){
+  chat(){
 
     if(this.messagecontent){
-      this.socketservice.sendMessage(this.messagecontent);
-      this.messagecontent == null;
+    this.socketservice.sendMessage(this.messagecontent);
+    this.messagecontent = "";
+
     }else{
-      console.log('No Message')
+    console.log("no message")
     }
-  }
+}
 
 }

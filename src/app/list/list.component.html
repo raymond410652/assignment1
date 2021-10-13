@@ -1,0 +1,29 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<h3>Users list</h3>
+<div>
+    <button routerLink = "/add-list">Add user</button>
+</div>
+<div class= "btn btn-primary" class="container">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>email</th>
+            
+        </tr>
+        <tr style="padding-top:30px;" *ngFor = 'let user of Users'>
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.pwd}}</td>
+        <td>{{user.email}}</td>
+        <td><button class = "btn btn-primary" [routerLink] = "['/edit',user.id]">Edit</button>
+            &nbsp; <button class= "btn btn-primary" (click)="deleteuser(user.id)">Delete</button>
+            &nbsp;<button class= "btn btn-primary" [routerLink] = "['/login',user.id]">Chat</button></td>
+
+        
+        </tr>
+    </table>
+</div>

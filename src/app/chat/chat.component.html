@@ -10,21 +10,23 @@
             <input type="text" [(ngModel)]="messagecontent"  name="messagecontent" id="messagecontent" class="dorm-control"/>
         </div>
         <div class="form-group">
-            <button *ngIf="isinRoom" (click)="chat(messagecontent)" class="btn btn-primary">Chat</button> &nbsp;
+            <button *ngIf="isinRoom" (click)="chat()" class="btn btn-primary">Chat</button> &nbsp;
             <button *ngIf="!isinRoom" (click)="joinroom()" class="btn btn-primary">Join</button> &nbsp;
             <button *ngIf="isinRoom" (click)="leaveroom()" class="btn btn-primary">Leave</button>
         </div>
 
         <select [(ngModel)] = "roomslist" name ="roomlist">
             <option [ngValue] ="null">Select Room</option>
-            <option *ngFor = "let room of rooms">{{room}}</option>
+            <option *ngFor = "let room of rooms">
+                {{room}}
+            </option>
         </select><br/><br/>
         <label for="newroom">New Room</label>
-        <input type = "text" [(ngModel)]="newroom" id="newroom" class="form-control"/>
+        <input type = "text" [(ngModel)]="newroom" name="newroom" id="newroom" class="form-control"/>
         <button (click)="createroom()" calss="btn btn-primary">Create New Room</button>
     </form>
 
-    <h3>Chat Messages</h3>
+    <h3>Chat Notice</h3>
     {{roomnotice}}<br/>
     <button (click) = "clearnotice()" calss = "btn btn-primary">Clear</button><br/>
     <h3>Chat Messages for {{currentroom}} - {{numusers}} users in the live!</h3>
