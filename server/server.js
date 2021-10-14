@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require('express'); 
 const app =express();
 const cors =require('cors');
-const MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectId;
-const url = 'mongodb://localhost:27017';
+const MongoClient = require('mongodb').MongoClient; // get mongo db 
+var ObjectId = require('mongodb').ObjectId; // get objid from mongo db 
+const url = 'mongodb://localhost:27017'; // the url of mongo db 
 
 const path = require('path');
-const http = require ('http').Server(app);
-const io = require('socket.io')(http,{
+const http = require ('http').Server(app); // get the http 
+const io = require('socket.io')(http,{    // socket.io connect to client side 
     cors: {
         origin: "http://localhost:4200",
         methods: ["GET", "POST"],
@@ -26,11 +26,11 @@ app.use(express.json());
 
 
 
-
+// connect to socket.js 
 
 sockets.connect(io,PORT);
 
-
+// connect to mongo db and router 
 MongoClient.connect(url,{useNewUrlParser: true, useUnifiedTopology: true},function(err, client){
     if (err) {return console.log(err)}
         const dbName = 'userdb';
@@ -45,5 +45,5 @@ MongoClient.connect(url,{useNewUrlParser: true, useUnifiedTopology: true},functi
 
     
 ;})
-
+// connect to listen.js 
 server.listen(http,PORT);

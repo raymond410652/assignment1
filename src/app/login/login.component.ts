@@ -26,10 +26,12 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // to nevigate the exact page by id 
     this.route.paramMap.subscribe((params)=>{
       console.log(params)
       this.useridparam = Number(params.get('user.id'));
     })
+    // to get the data by id 
     this.bookService.getitem(this.useridparam).subscribe((data)=>{
       console.log(data)
       this.userid = data[0].id;
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.userobjid=data[0]._id;
     })
   }
+  // to give auth for login 
 logIn(event:any){
   event.preventDefault();
   this.bookService.getitem(this.useridparam).subscribe((data)=>{

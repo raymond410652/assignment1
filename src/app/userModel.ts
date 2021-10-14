@@ -1,4 +1,6 @@
 export class UserModel {
+
+    // to define the item want to add 
     objid:string;
     id:number;
     name:string;
@@ -6,7 +8,7 @@ export class UserModel {
     email:string;
     
   
-
+    
     constructor(objid:string,_id:number,_name:string,_pwd:string,_email:string)
     {
         this.objid = objid;

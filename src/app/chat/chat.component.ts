@@ -9,7 +9,7 @@ const SERVER_URL = "http://localhost:3000/api/chat";
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  
+  // initial data 
   messagecontent:string ="";
   messages:string[]=[];
   rooms = [];
@@ -22,6 +22,7 @@ export class ChatComponent implements OnInit {
   constructor(private socketservice:SocketService) { }
 
   ngOnInit(){
+    // import function from service 
     this.socketservice.initSocket();
     this.socketservice.getMessage().subscribe((message:any) => {
       console.log(message)
@@ -41,15 +42,17 @@ export class ChatComponent implements OnInit {
     });
 
   }
-
+  // join room and get numuser
   joinroom(){
     this.socketservice.joinroom(this.roomslist);
     this.socketservice.reqnumusers(this.roomslist);
     this.socketservice.getnumusers((res:any)=>(this.numusers=res));
   }
+  //clear notice
   clearnotice(){
     this.roomnotice ="";
   }
+  //leave room and empty data after leave roo
   leaveroom(){
     this.socketservice.leaveroom(this.currentroom)
     this.socketservice.reqnumusers(this.currentroom);
@@ -61,13 +64,14 @@ export class ChatComponent implements OnInit {
     this.roomnotice = "";
     this.messages = [];
   }
-
+  // create room 
   createroom(){
     console.log(this.createroom);
     this.socketservice.createroom(this.newroom);
     this.socketservice.reqroomList();
     this.newroom = "";
   }
+  // to send message 
   chat(){
 
     if(this.messagecontent){
