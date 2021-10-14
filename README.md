@@ -5,8 +5,7 @@ there have 3 version: the first one is the init version which means have not bee
 the second version upload the login page and third change upload the chat and server. 
 all the sub branch was merged into main branch in the end.
 
-assignment2 updated:
-the new updating branch is called version3 which include the whole work that i add in assignment phase 2. because many error was happened when this app was coded, there was not many comment sent to the github.
+
 
 # data stuctures
 
