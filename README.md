@@ -134,7 +134,9 @@ table2: socket service
     * function can be see in rest api
   * socket.service is to connect to socket.io server
     * function can be see in rest api
-  
+  ### testing
+  there have the Mocha for server testing 
+  * user run **npm run-script test** to test the read function in the server and it should show all the list of database.
   
    
   
