@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "unitTest": "mocha ./unitTest/test.js",
+    "test":"mocha ./unitTest/test2.js",
     "start": "node server.js"
   },
   "author": "",
@@ -14,5 +15,10 @@
     "mongodb": "^4.1.2",
     "socket.io": "^4.2.0"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.2"
+  }
 }
