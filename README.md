@@ -63,3 +63,17 @@ table2: socket service
   |notice(next:any)|this.socket.on('notice',(res:any)=>next(res))|get the notice from server
   |sendMessage(message:string)|this.socket.emit('message',message);|send the "message" which had been add in client side|
   |getMessage()|return new Observable((observer)=>{this.socket.on('new-message',(message:any) => {observer.next(message);|get new-message from socket server|
+  
+  ### server side:
+  
+  table1: mongodb router
+  
+  |file name|function name|use
+  |----|----|----|
+  |add.js|find({'id':user.id}),insertOne(user,(err,dbres)=>{...}, res.send({'num':num,err:null});|find is used to find specific data from the datbase. insertOne is to add data to the server. send is to send the data to client side and it send the 'num' in this time.| 
+  |getitem.js|find({id:userID}).limit(1),send()|find the data by id and sent it back to server|
+  |productcount.js|find({}).count(),send()|find the user and count it.then, to send it back to client|
+  |read.js|find({}),send()|to find the all data of database and sent it to client side|
+  |remove.js|deleteOne({id:userID},send()| To delete the select data and sent this informaion to client side|
+  |update.js|updateOne(),send()|to update the exist data and send it back to client side|
+  |validid.js|find({'id':user}).count(), send()| to find the id name and do some statement to checkvalidid, and sent it to client side|
