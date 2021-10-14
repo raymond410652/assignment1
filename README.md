@@ -34,15 +34,15 @@ for the group, there have list of room for user join in user can sent the messag
 in this case, i used the socket to make user can login at the same time and avalible to sent data to each other.
 
 ## Rest API
-### router side:
-in the server.js, the basic conection was set:
-|const|use place|
-|----|----|
-|express & cors|use to set up the orginal url|
-|MongoClient|use to connect mongodb|
-|url(:27017)|the mongodb url|
-|http|get the http|
-|io|make socket.io connect to original url of client side|
-|sockets|import socket.js|
-|server|import listen.js|
+### client side:
+in the client side server, the api was below:
+|funcion name|return value|use place|
+|----|----|----|
+|add(user:Usermodel)| return this.http.post<any>('http://localhost:3000/api/add', user)|use to send the data to add.js in router|
+|getlist()|return this.http.get<any>('http://localhost:3000/api/getlist');| use to get the all of added data from mongodb and list in the page|
+|getitem(userID:any)| return this.http.post<any>('http://localhost:3000/api/getitem',{'userid':userID})|to post the userID in server and than find that id in server|
+|updateitem(user:UserModel)| return this.http.post<any>('http://localhost:3000/api/update', user)|to post a user detail to update.js, in order to update data in database|
+|deleteitem(userID:any)|return this.http.post<any>('http://localhost:3000/api/deleteitem',{'userid':userID})| post the user id in deleteitem.js to dp the delete action in server side|
+|checkvalidid(userID:any)|return this.http.post<any>('http://localhost:3000/api/checkvalidid',{'userid':userID})| post the userid to api/checkvalidid and to some work in server|
+|getproductcount()|return this.http.get<any>('http://localhost:3000/api/prodcount');|get the count from server side
 
