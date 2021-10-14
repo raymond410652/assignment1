@@ -1,4 +1,5 @@
 
+
 module.exports = {
 
     connect: function (io,PORT){
@@ -12,12 +13,13 @@ module.exports = {
                 
 
                 socket.on('message',(message)=>{
+                    console.log(message);
                     
                     for(i = 0; i<socketRoom.length;i++){
                         
                         if(socketRoom[i][0] == socket.id){
                          
-                          return chat.to(socketRoom[i][1]).emit('new-message',message);
+                          chat.to(socketRoom[i][1]).emit('message',message);
                           
                           
                         }

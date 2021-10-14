@@ -24,9 +24,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(){
     // import function from service 
     this.socketservice.initSocket();
-    this.socketservice.getMessage().subscribe((message:any) => {
-      console.log(message)
-      this.messages.push(message);});
+    this.socketservice.getMessage((m:any) => {this.messages.push(m); console.log(m)});
     
     this.socketservice.reqroomList();
     this.socketservice.getroomList((msg:any)=>{this.rooms = JSON.parse(msg)});

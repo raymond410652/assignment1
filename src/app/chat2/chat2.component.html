@@ -1,0 +1,20 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div calss="container">
+    <form>
+        <div class = "form-group">
+            <label for="messagecontent">New Message</label>
+            <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="dorm-control"/>
+        </div>
+        <div class="form-group">
+            <button (click)="chat()" class="btn btn-primary">Chat</button>
+        </div>
+
+    </form>
+    <h3>Chat Messages</h3>
+    <ul>
+        <li *ngFor="let message of messages">{{message}}</li>
+    </ul>
+</div>
+<router-outlet></router-outlet>

@@ -21,7 +21,8 @@
         <td>{{user.email}}</td>
         <td><button class = "btn btn-primary" [routerLink] = "['/edit',user.id]">Edit</button>
             &nbsp; <button class= "btn btn-primary" (click)="deleteuser(user.id)">Delete</button>
-            &nbsp;<button class= "btn btn-primary" [routerLink] = "['/login',user.id]">Chat</button></td>
+            &nbsp;<button class= "btn btn-primary" [routerLink] = "['/login',user.id]">Chat</button>
+            &nbsp;<button class= "btn btn-primary" routerLink = "/chat2">Quick-C</button></td>
 
         
         </tr>

@@ -14,7 +14,9 @@ const io = require('socket.io')(http,{    // socket.io connect to client side
     }
 });
 const sockets =require('./socket.js');
-const server = require('./listen.js')
+const socket2 =require('./sockettwo.js');
+const server = require('./listen.js');
+
 
 
 const PORT=3000;
@@ -29,7 +31,7 @@ app.use(express.json());
 // connect to socket.js 
 
 sockets.connect(io,PORT);
-
+socket2.connect(io,PORT)
 // connect to mongo db and router 
 MongoClient.connect(url,{useNewUrlParser: true, useUnifiedTopology: true},function(err, client){
     if (err) {return console.log(err)}

@@ -7,9 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 import { AddListComponent } from './add-list/add-list.component';
+import { Chat2Component } from './chat2/chat2.component';
 
 const routes: Routes = [
-  
+  // give the link name 
   {path:"login/:user.id",component: LoginComponent},
   {path:"account", component: AccountComponent},
   {path:"chat", component: ChatComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"edit/:user.id", component: EditComponent},
   {path:"list", component: ListComponent},
   {path:"add-list", component: AddListComponent},
+  {path:"chat2", component: Chat2Component},
 ];
 
 @NgModule({

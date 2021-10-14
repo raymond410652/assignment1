@@ -21,7 +21,7 @@ export class SocketService {
     this.socket.emit("leaveRoom",selroom)
   }
   joined(next:any):void{
-    this.socket.on("joined",(res:any)=>next(res))
+    this.socket.on("joined",(res:any)=> next (res))
   }
   createroom(newroom:any):void{
     this.socket.emit('newroom',newroom)
@@ -48,10 +48,10 @@ export class SocketService {
     this.socket.emit('message',message);
 
   }
-  getMessage(){
-    return new Observable((observer)=>{
-      this.socket.on('new-message',(message:any) => {observer.next(message);
-      });
-    });
+  getMessage(next:any){
+   
+      this.socket.on('message',(message:any) => next(message));
+      
+ 
   }
 }
