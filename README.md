@@ -77,3 +77,64 @@ table2: socket service
   |remove.js|deleteOne({id:userID},send()| To delete the select data and sent this informaion to client side|
   |update.js|updateOne(),send()|to update the exist data and send it back to client side|
   |validid.js|find({'id':user}).count(), send()| to find the id name and do some statement to checkvalidid, and sent it to client side|
+  
+  ## Angular Architecture
+  in this case, we will introduce the component in angular side
+  ### add-list.component
+  the add-list componnet was used to make the user adding function in the app
+  * html
+    * in this page, provide the User Id, User Nmae, password, email for user to add detail and the Add New button to add into database.
+  * Ts file
+    * to initialize the data in the first and provide two function addnewUser() and checkvalidid()
+      * addnewUser() is to add data detail that write in html into server side
+      * checkvalidid() is to check the id if it is the same or 0.
+  ### list.component
+  this component wass used to list the added data in the page
+  * html
+    * there give the table to list the data and using the ngFor to make the array.
+    * create 3 functional button: Edit, Delete, Chat
+  * ts file
+    * in the ngOnInit, we import the getlist() function from service and get the data from server
+    * deleteuser() is used to delete the item When user click the delete button
+  ### edit.component
+  this component use to edit the exist data when user click the edit button in list page
+  * html
+    * almost the same input from the add page.
+  * ts file
+    * in the ngOnInit(), we make the paramap that user can directly go to different user detail page by user.id. then import the getitem() to get the data and it is also nevigated by id. 
+    * update() is to update the new data that write in edit page to server side and list page
+  ### login.component
+  this component is use to make the login page for each user who want to use chat function
+  * html
+    * give the username and password to input and will check is it correct as user admin.
+  * ts file
+    * to give authentication function 
+  ### chat.component 
+  this is the component that user can chat in here 
+  * html 
+    * the room can be created by user and there have input bar to define the room name 
+    * the list of room will be shown and can be selected 
+    * join button to join the room
+    * leave button to leave the room 
+    * ngmodel to make the message bar to write the word
+    * chat button to send message content 
+    * room notice to show notice when user join in 
+    * currerntroom show which room user is in 
+    * numusers show how many people in the room
+    * ngfor to make the list of message content and show in the page
+  * ts file
+    * ngOnInit() include the function to init the socket http, to get message, to show roomlist, to show notice, to show joined room.
+    * joinroom() is to join in the room and show number of users
+    * leaveroom() is to leave the room and empty data 
+    * createroom() is to create the room
+    * chat() is to sent message write in page
+  ### service 
+  there have two service in clide site, one is used to connect mongo db server and another one is to connect to socket server 
+  * book.service is to coonect to mongo db server 
+    * function can be see in rest api
+  * socket.service is to connect to socket.io server
+    * function can be see in rest api
+  
+  
+   
+  
