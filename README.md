@@ -36,6 +36,8 @@ in this case, i used the socket to make user can login at the same time and aval
 ## Rest API
 ### client side:
 in the client side server, the api was below:
+
+table1:mongodb service
 |funcion name|return value|use place|
 |----|----|----|
 |add(user:Usermodel)| return this.http.post<any>('http://localhost:3000/api/add', user)|use to send the data to add.js in router|
@@ -46,3 +48,18 @@ in the client side server, the api was below:
 |checkvalidid(userID:any)|return this.http.post<any>('http://localhost:3000/api/checkvalidid',{'userid':userID})| post the userid to api/checkvalidid and to some work in server|
 |getproductcount()|return this.http.get<any>('http://localhost:3000/api/prodcount');|get the count from server side
 
+table2: socket service
+  |funcion name|return value|use place|
+  |----|----|----|
+  |initSocket()|this.socket = io(SERVER_URL)| make the client side connect to server side by this function|
+  |joinroom(selroom:any)|this.socket.emit("joinRoom",selroom)|emit is sending the data to server in socket. this fucntion send the "joinRoom" and selroom(parameter) to server|
+  |leaveroom(selroom:any)| this.socket.emit("leaveRoom",selroom)|send the request of leaveRoom to server side|
+  |joined(next:any)| this.socket.on("joined",(res:any)=>next(res))|on is to get data from server in socket. this function recevie the data "joined"|
+  |createroom(newroom:any)|this.socket.emit('newroom',newroom)|sent "newroom" data to server, in order to create new room|
+  |reqnumusers(selroom:any)|this.socket.emit('numusers',selroom)|send "numusers" to server which collect from client side|
+  | getnumusers(next:any)|this.socket.on('numusers',(res:any)=>next(res))|fet the data from server which had been calculated|
+  |reqroomList()|this.socket.emit('roomlist','list please');|send the "roomlist" to server 
+  |getroomList(next:any)|this.socket.on('roomlist',(res:any)=>next(res))|get the roomlist from server 
+  |notice(next:any)|this.socket.on('notice',(res:any)=>next(res))|get the notice from server
+  |sendMessage(message:string)|this.socket.emit('message',message);|send the "message" which had been add in client side|
+  |getMessage()|return new Observable((observer)=>{this.socket.on('new-message',(message:any) => {observer.next(message);|get new-message from socket server|
